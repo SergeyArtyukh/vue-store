@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import productItem from './v-home__product-slider/v-product-item.vue'
-import notificationBar from './v-home__notification/v-notification.vue'
+import productItem from '../v-home__product-slider/v-product-item.vue'
+import notificationBar from '../v-home__notification/v-notification.vue'
 import {mapActions, mapGetters} from 'vuex'
 export default {
   data () {

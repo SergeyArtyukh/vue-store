@@ -7,7 +7,7 @@
       class="main-content-container"
       >
         <div class="img-container">
-          <img :src="require('../assets/images/footer/' + mainElem.url)" alt="№">
+          <img :src="require('@/assets/images/footer/' + mainElem.url)" alt="№">
         </div>
         <div class="support-phones-container">
           <div class="support-phone">

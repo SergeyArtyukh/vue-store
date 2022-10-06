@@ -10,7 +10,7 @@
       :class="salesElem.class">
         <span>
           <a href="#">
-            <img :src="require('../assets/images/sale-imgs/' + salesElem.url)" alt="#">
+            <img :src="require('@/assets/images/sale-imgs/' + salesElem.url)" alt="#">
           </a>
         </span>
       </div>

@@ -11,7 +11,7 @@
       >
         <div class="img-container">
           <a href="#">
-            <img :src="require('../assets/images/reviews-imgs/' + reviewElem.url)" alt="#">
+            <img :src="require('@/assets/images/reviews-imgs/' + reviewElem.url)" alt="#">
           </a>
         </div>
         <div class="text-container">

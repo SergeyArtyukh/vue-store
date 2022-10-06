@@ -2,7 +2,7 @@
   <div class="v-home-banner-list v-container">
     <div class="big-banner">
       <a href="#">
-        <img :src="require('../assets/images/banner-list-imgs/' + bigBannerUrl)" alt="#">
+        <img :src="require('@/assets/images/banner-list-imgs/' + bigBannerUrl)" alt="#">
       </a>
     </div>
     <div class="other-banner-container">
@@ -12,7 +12,7 @@
         :key="index"
         class="img-container">
           <a href="#">
-            <img :src="require('../assets/images/banner-list-imgs/' + bannerImg.url)" alt="#">
+            <img :src="require('@/assets/images/banner-list-imgs/' + bannerImg.url)" alt="#">
           </a>
         </div>
       </div>
@@ -22,7 +22,7 @@
         :key="index"
         class="img-container">
           <a href="#">
-            <img :src="require('../assets/images/banner-list-imgs/' + bannerImg.url)" alt="#">
+            <img :src="require('@/assets/images/banner-list-imgs/' + bannerImg.url)" alt="#">
           </a>
         </div>
       </div>

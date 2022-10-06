@@ -13,7 +13,7 @@
         v-for="(partnerElem, index) in copyrightElem.partnerElems"
         :key="index"
         href="#">
-          <img :src="require('../assets/images/footer/' + partnerElem.url)" alt="#">
+          <img :src="require('@/assets/images/footer/' + partnerElem.url)" alt="#">
         </a>
       </div>
     </div>

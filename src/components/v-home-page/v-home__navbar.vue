@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="v-navbar__search">
-        <input :placeholder="navbarElem.placeholder" type="text" name="" value="">
+        <input :placeholder="navbarElem.placeholder" v-model="searchValue" type="text" @keyup.enter="search(searchValue)">
         <button class="search-icon-button" type="button" name="button">
           <font-awesome-icon :icon="navbarElem.searchIcon"/>
         </button>
@@ -39,7 +39,7 @@
             </span> -->
 
             <span
-            v-if="CART.length || FAVORITE.length"
+            v-if="CART.length || FAVORITE.length || COMPARISON.length"
             >
             {{counterArrays(index)}}
             </span>
@@ -64,8 +64,8 @@
           v-for="(popElemText, index) in popElem.popElemTexts"
           :key="index"
           >
-          <img v-if="popElemText.url.length" :src="require('../assets/images/popup-imgs/' + popElemText.url)" alt="#">
-          <router-link :to="{ name: '', params: {} }"><span>{{popElemText.title}}</span></router-link>
+          <img v-if="popElemText.url.length" :src="require('@/assets/images/popup-imgs/' + popElemText.url)" alt="#">
+          <router-link :to="`/categoria/${popElemText.categoriesLink}`"><span>{{popElemText.title}}</span></router-link>
             <div
             class="hide-text-container"
             v-for="(popElemTextLast, index) in popElemText.popElemTextLasts"
@@ -88,16 +88,25 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapGetters ([
       'CART',
       'FAVORITE',
       'COMPARISON',
+      'SEARCH_VALUE'
     ]),
   },
   methods: {
+    ...mapActions([
+      'ADD_SEARCH_VALUE'
+    ]),
+    search(value) {
+      this.ADD_SEARCH_VALUE(value);
+      this.$router.push('/categoria/PCs')
+
+    },
     counterArrays (index) {
       if (this.navButtonElems[index].title === 'Корзина' && this.CART.length > 0) {
         return this.CART.length
@@ -131,6 +140,7 @@ export default {
   },
   data () {
     return {
+      searchValue: '',
       isVisible: false,
       isHidden: false,
       hideButton: 'Показать',
@@ -171,7 +181,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img1.png',
-              title: 'Смартфоны и планшеты'
+              title: 'Смартфоны и планшеты',
+              categoriesLink: 'Phones'
             },
             {
               url: '',
@@ -179,7 +190,7 @@ export default {
             },
             {
               url: '',
-              title: 'Электронные книги'
+              title: 'Электронные книги',
             },
             {
               url: '',
@@ -196,7 +207,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img2.png',
-              title: 'Ноутбуки, планшеты и компьютеры'
+              title: 'Ноутбуки, планшеты и компьютеры',
+              categoriesLink: 'PCs'
             },
             {
               url: '',
@@ -234,7 +246,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img3.png',
-              title: 'Техника для дома'
+              title: 'Техника для дома',
+              categoriesLink: 'HomeTech'
             },
             {
               url: '',
@@ -275,7 +288,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img4.png',
-              title: 'Игры и развлечения'
+              title: 'Игры и развлечения',
+              categoriesLink: 'Games'
             },
             {
               url: '',
@@ -318,7 +332,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img5.png',
-              title: 'Телевизоры, Аудио-видео, Hi-Fi'
+              title: 'Телевизоры, Аудио-видео, Hi-Fi',
+              categoriesLink: 'TVs'
             },
             {
               url: '',
@@ -361,7 +376,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img6.png',
-              title: 'Фото и видеотехника'
+              title: 'Фото и видеотехника',
+              categoriesLink: 'Photo'
             },
             {
               url: '',
@@ -404,7 +420,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img7.png',
-              title: 'Бытовая техника для кухни'
+              title: 'Бытовая техника для кухни',
+              categoriesLink: 'KitchenTech'
             },
             {
               url: '',
@@ -459,7 +476,8 @@ export default {
           popElemTexts: [
             {
               url: 'popup-img8.png',
-              title: 'Красоты и здоровье'
+              title: 'Красоты и здоровье',
+              categoriesLink: 'Beauty'
             },
             {
               url: '',

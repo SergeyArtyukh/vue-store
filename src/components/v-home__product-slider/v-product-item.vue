@@ -7,7 +7,7 @@
         >
           <div class="left-side">
             <div class="img-container" @click="productCardLink">
-              <img :src="require('../../assets/images/product-slider-imgs/' + sliderElem.url)" alt="#">
+              <img :src="require('../../assets/images/' + sliderElem.url)" alt="#">
               <div :class="sliderElem.classOfNewDevice" class="products-discount-container">
                 <span>{{sliderElem.productDiscount + sliderElem.productDiscountSign}}</span>
               </div>

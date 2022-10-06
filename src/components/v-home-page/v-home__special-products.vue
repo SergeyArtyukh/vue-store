@@ -11,7 +11,7 @@
         class="product-card">
         <div class="img-container">
           <a href="#">
-            <img :src="require('../assets/images/special-products-imgs/first-line/' + firstSpecialLine.url)" alt="#">
+            <img :src="require('@/assets/images/special-products-imgs/first-line/' + firstSpecialLine.url)" alt="#">
           </a>
         </div>
         <div class="text-container">
@@ -33,7 +33,7 @@
         class="product-card">
         <div class="img-container">
           <a href="#">
-            <img :src="require('../assets/images/special-products-imgs/first-line/' + secondSpecialLine.url)" alt="#">
+            <img :src="require('@/assets/images/special-products-imgs/first-line/' + secondSpecialLine.url)" alt="#">
           </a>
         </div>
         <div class="text-container">
@@ -55,7 +55,7 @@
         class="product-card">
         <div class="img-container">
           <a href="#">
-            <img :src="require('../assets/images/special-products-imgs/first-line/' + thirtSpecialLine.url)" alt="#">
+            <img :src="require('@/assets/images/special-products-imgs/first-line/' + thirtSpecialLine.url)" alt="#">
           </a>
         </div>
         <div class="text-container">

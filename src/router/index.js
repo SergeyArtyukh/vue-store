@@ -6,6 +6,15 @@ import Comparison from '../views/vm-comparison-page.vue'
 import Marked from '../views/vm-marked-page.vue'
 import Cart from '../views/vm-cart-page.vue'
 import productPage from '../views/vm-product-page.vue'
+import categoriesPhones from '../views/vm-categories/vm-categories-phones.vue'
+import categoriesPCs from '../views/vm-categories/vm-categories-pcs.vue'
+import categoriesHomeTech from '../views/vm-categories/vm-categories-home-tech.vue'
+import categoriesGames from '../views/vm-categories/vm-categories-games.vue'
+import categoriesTVs from '../views/vm-categories/vm-categories-tvs.vue'
+import categoriesPhotos from '../views/vm-categories/vm-categories-photos.vue'
+import categoriesKitchenTech from '../views/vm-categories/vm-categories-kitchen-tech.vue'
+import categoriesBeauty from '../views/vm-categories/vm-categories-beauty.vue'
+import notFoundPage from '@/components/v-not-found-page.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +48,42 @@ const routes = [
     path: '/product-page',
     name: 'productPage',
     component: productPage
+  },
+  {
+    path: '/categoria/Phones',
+    component: categoriesPhones
+  },
+  {
+    path: '/categoria/PCs',
+    component: categoriesPCs
+  },
+  {
+    path: '/categoria/HomeTech',
+    component: categoriesHomeTech
+  },
+  {
+    path: '/categoria/Games',
+    component: categoriesGames
+  },
+  {
+    path: '/categoria/TVs',
+    component: categoriesTVs
+  },
+  {
+    path: '/categoria/Photos',
+    component: categoriesPhotos
+  },
+  {
+    path: '/categoria/KitchenTech',
+    component: categoriesKitchenTech
+  },
+  {
+    path: '/categoria/Beauty',
+    component: categoriesBeauty
+  }, 
+  {
+    path: '/not-found-page',
+    component: notFoundPage
   }
   // {
   //   path: '/about',

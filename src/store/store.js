@@ -6,14 +6,58 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    products: [],
+    // -------CATEGORIES ARRAYS--------START
+    categoryPC: [],
+    homeTech: [],
+    games: [],
+    TV: [],
+    photo: [],
     cart: [],
+    kitchen: [],
+    beauty: [],
+    // -------CATEGORIES ARRAYS--------END
+    // -------MAIN ARRAYS---------START
     favorite: [],
     comparison: [],
+    products: [],
+    // -------MAIN ARRAYS---------END
+    // ---------SIDEBAR CATEGORIES ARRAYS--------START
+    sortElemsPC: [],
+    // ---------SIDEBAR CATEGORIES ARRAYS--------END
+    // ---------SEARCH NAVBAR---------START
+    searchValue: '',
+    // ---------SEARCH NAVBAR---------END
   },
   mutations: {
+    SET_SEARCH_VALUE_TO_STATE: (state, value) => {
+      state.searchValue = value;
+    },
+    SET_SORTELEMSPC_TO_STATE: (state, sortElemsPC) => {
+      state.sortElemsPC = sortElemsPC;
+    },
     SET_PRODUCTS_TO_STATE: (state, products) => {
       state.products = products;
+    },
+    SET_CATEGORYPC_TO_STATE: (state, categoryPC) => {
+      state.categoryPC = categoryPC;
+    },
+    SET_HOMETECH_TO_STATE: (state, homeTech) => {
+      state.homeTech = homeTech;
+    },
+    SET_GAMES_TO_STATE: (state, games) => {
+      state.games = games;
+    },
+    SET_TV_TO_STATE: (state, TV) => {
+      state.TV = TV;
+    },
+    SET_PHOTO_TO_STATE(state, photo) {
+      state.photo = photo;
+    },
+    SET_KITCHEN_TO_STATE(state, kitchen) {
+      state.kitchen = kitchen;
+    },
+    SET_BEAUTY_TO_STATE(state, beauty) {
+      state.beauty = beauty;
     },
     SET_CART: (state, product) => {
       if (state.cart.length) {
@@ -87,11 +131,16 @@ const store = new Vuex.Store({
     //   state.favorite.push(product)
     // },
     SPLICE_CART: (state, index) => {
-      state.cart.splice(index, 1);
+      state.cart.splice(index, 1)
       localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     SPLICE_FAVORITE: (state, index) => {
       state.favorite.splice(index, 1)
+      localStorage.setItem('favorite', JSON.stringify(state.favorite));
+    },
+    SPLICE_COMPARISON: (state, index) => {
+      state.comparison.splice(index, 1)
+      localStorage.setItem('comparison', JSON.stringify(state.comparison));
     },
     INCREMENT: (state, index) => {
       state.cart[index].quantity++
@@ -105,6 +154,9 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    ADD_SEARCH_VALUE({commit}, value) {
+      commit('SET_SEARCH_VALUE_TO_STATE', value);
+    },
     ADD_TO_CART({commit}, product) {
       commit('SET_CART', product);
     },
@@ -119,6 +171,9 @@ const store = new Vuex.Store({
     },
     REMOVE_FROM_FAVORITE({commit}, product) {
       commit('SPLICE_FAVORITE', product);
+    },
+    REMOVE_FROM_COMPARISON({commit}, product) {
+      commit('SPLICE_COMPARISON', product)
     },
     DECREMENT_CART_QUANTITY({commit}, index) {
       commit('DECREMENT', index);
@@ -138,28 +193,165 @@ const store = new Vuex.Store({
         console.log(error);
         return error
       })
+    },
+    GET_CATEGORYPC_FROM_API({commit}){
+      return axios ('http://localhost:3000/categoryPCs',{
+        method:"GET"
+      })
+      .then((categoryPC) => {
+        commit('SET_CATEGORYPC_TO_STATE', categoryPC.data);
+        return categoryPC
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_HOMETECH_FROM_API({commit}){
+      return axios ('http://localhost:3000/homeTech',{
+        method:"GET"
+      })
+      .then((homeTech) => {
+        commit('SET_HOMETECH_TO_STATE', homeTech.data);
+        return homeTech
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_GAMES_FROM_API({commit}){
+      return axios ('http://localhost:3000/games',{
+        method:"GET"
+      })
+      .then((games) => {
+        commit('SET_GAMES_TO_STATE', games.data);
+        return games
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_TV_FROM_API({commit}){
+      return axios ('http://localhost:3000/TV',{
+        method:"GET"
+      })
+      .then((TV) => {
+        commit('SET_TV_TO_STATE', TV.data);
+        return TV
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_PHOTO_FROM_API({commit}){
+      return axios ('http://localhost:3000/photo',{
+        method:"GET"
+      })
+      .then((PHOTO) => {
+        commit('SET_PHOTO_TO_STATE', PHOTO.data);
+        return PHOTO
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_KITCHEN_FROM_API({commit}){
+      return axios ('http://localhost:3000/kitchen',{
+        method:"GET"
+      })
+      .then((KITCHEN) => {
+        commit('SET_KITCHEN_TO_STATE', KITCHEN.data);
+        return KITCHEN
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_BEAUTY_FROM_API({commit}){
+      return axios ('http://localhost:3000/beauty',{
+        method:"GET"
+      })
+      .then((BEAUTY) => {
+        commit('SET_BEAUTY_TO_STATE', BEAUTY.data);
+        return BEAUTY
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
+    },
+    GET_SORTELEMSPC_FROM_API({commit}){
+      return axios ('http://localhost:3000/sortElemsPC',{
+        method:"GET"
+      })
+      .then((SORTELEMSPC) => {
+        commit('SET_SORTELEMSPC_TO_STATE', SORTELEMSPC.data);
+        return SORTELEMSPC
+      })
+      .catch ((error) => {
+        console.log(error);
+        return error
+      })
     }
   },
   getters: {
+    SEARCH_VALUE(state) {
+      return state.searchValue;
+    },
+    SORTELEMSPC(state) {
+      return state.sortElemsPC;
+    },
     PRODUCTS(state) {
       return state.products;
     },
+    CATEGORYPC(state) {
+      return state.categoryPC;
+    },
+    HOMETECH(state) {
+      return state.homeTech;
+    },
+    GAMES(state) {
+      return state.games;
+    },
+    TV(state) {
+      return state.TV;
+    },
+    PHOTO(state) {
+      return state.photo;
+    },
+    KITCHEN(state) {
+      return state.kitchen;
+    },
+    BEAUTY(state) {
+      return state.beauty;
+    },
     CART(state) {
-      const cart = localStorage.getItem('cart')
+      let cart = localStorage.getItem('cart')
       if(cart) {
        return state.cart = JSON.parse(cart)
+      } else {
+        cart = null;
       }
     },
     FAVORITE(state) {
-      const favorite = localStorage.getItem('favorite')
+      let favorite = localStorage.getItem('favorite')
       if(favorite) {
        return state.favorite = JSON.parse(favorite)
+      } else {
+        favorite  = null;
       }
     },
     COMPARISON(state) {
-      const comparison = localStorage.getItem('comparison')
+      let comparison = localStorage.getItem('comparison')
       if(comparison) {
        return state.comparison = JSON.parse(comparison)
+      } else {
+        comparison = null;
       }
     },
     TOTAL(state) {
